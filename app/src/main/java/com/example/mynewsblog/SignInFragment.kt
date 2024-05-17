@@ -5,15 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.mynewsblog.databinding.FragmentDashboardBinding
+import com.example.mynewsblog.databinding.FragmentSignInBinding
 
-class DashboardFragment : Fragment() {
+class SignInFragment : Fragment() {
 
-    private lateinit var binding: FragmentDashboardBinding
+    private lateinit var binding: FragmentSignInBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
 
-        binding= FragmentDashboardBinding.inflate(layoutInflater,container,false)
+        binding= FragmentSignInBinding.inflate(layoutInflater,container,false)
 
         return binding.root
     }
