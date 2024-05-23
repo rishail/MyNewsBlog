@@ -13,7 +13,7 @@ import com.example.mynewsblog.databinding.NewsListAdapterBinding
 
 
 class NewsListAdapter(
-    private var newsListAdapter: ArrayList<NewsArticleModel>,
+    private var newsList: ArrayList<NewsArticleModel>,
 //    private val callback: SongsListFragment,
     private val context: Context,
 
@@ -31,17 +31,20 @@ class NewsListAdapter(
 
     override fun getItemCount(): Int {
 
-        return newsListAdapter.size
+        return newsList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder,@SuppressLint("RecyclerView") position: Int) {
         holder as ViewHolder
 
+        holder.binding.newsTitle.text=newsList[position].title
+        holder.binding.newsDescription.text=newsList[position].description
 
+    }
 
-
-
-
+    fun updateNewsList(newNewsList: ArrayList<NewsArticleModel>) {
+        newsList = newNewsList
+        notifyDataSetChanged()
 
     }
 

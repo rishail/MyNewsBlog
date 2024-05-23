@@ -22,9 +22,6 @@ class NewsFragment : Fragment() {
     private var adapter: NewsListAdapter? = null
     private lateinit var apiService: ApiService
 
-    private val newsListAdapterBinding by lazy {
-        NewsListAdapterBinding.inflate(layoutInflater)
-    }
 
     private var newsList = ArrayList<NewsArticleModel>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
@@ -49,22 +46,23 @@ class NewsFragment : Fragment() {
         val apiKey = "4f5e4f2de7c544228066f19efac3ad9e"
 
 
-
         val retrofitClient = RetrofitClient()
         apiService = retrofitClient.newsApiService
 
-        retrofitClient.newsApiService.getNews(
-            query, from,
-            to, sortBy, apiKey)?.enqueue(object : Callback<NewsResponseModel?> {
+        retrofitClient.newsApiService.getNews(query, from, to, sortBy, apiKey)?.enqueue(object : Callback<NewsResponseModel?> {
 
             override fun onResponse(call: Call<NewsResponseModel?>,response: Response<NewsResponseModel?>) {
 
                 if (response.isSuccessful && response.body() != null) {
                     val articles = response.body()!!.articles
 
-                    Log.d("1234", articles.toString())
+                    newsList.clear()
+                    newsList.addAll(articles)
+                    adapter?.updateNewsList(newsList)
 
-                } else {
+                }
+
+                else {
                     Toast.makeText(requireContext(), "Failed to retrieve news", Toast.LENGTH_SHORT).show()
                 }
             }
