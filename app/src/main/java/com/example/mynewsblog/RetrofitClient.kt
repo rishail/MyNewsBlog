@@ -4,6 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClient {
+
     private val LOGIN_URL = "https://reqres.in/"
     private  val NEWS_URL = "https://newsapi.org/"
 
@@ -23,15 +24,6 @@ class RetrofitClient {
             .create(ApiService::class.java)
     }
 
-//    var apiService: ApiService
 
-//    init {
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(LOGIN_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        apiService = retrofit.create(ApiService::class.java)
-//    }
 
 }

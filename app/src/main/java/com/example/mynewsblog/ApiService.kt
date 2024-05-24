@@ -10,16 +10,16 @@ import retrofit2.http.Query
 interface ApiService {
 
     @POST("/api/login")
-    fun login(@Body loginRequest: LoginRequestModel?): Call<LoginResponseModel?>?
+  suspend  fun login(@Body loginRequest: LoginRequestModel?):LoginResponseModel
 
     @GET("v2/everything")
-    fun getNews(
+   suspend fun getNews(
         @Query("q") query: String,
         @Query("from") from: String,
         @Query("to") to: String,
         @Query("sortBy") sortBy: String,
         @Query("apiKey") apiKey: String
-    ): Call<NewsResponseModel?>?
+    ):NewsResponseModel
 
 
 }
