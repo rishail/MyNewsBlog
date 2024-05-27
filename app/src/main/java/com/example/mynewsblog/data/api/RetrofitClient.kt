@@ -1,4 +1,4 @@
-package com.example.mynewsblog
+package com.example.mynewsblog.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

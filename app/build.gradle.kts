@@ -1,8 +1,12 @@
+import org.jetbrains.kotlin.com.intellij.icons.AllIcons.FileTypes.Properties
+import java.io.FileInputStream
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id ("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -16,7 +20,23 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+     val properties= Properties
+     val localProperties= rootProject.file("local.properties")
+
+        if (localProperties.exists()){
+            FileInputStream(localProperties).use { fis->properties.load(fis) }
+        }
+        else{
+            throw GradleException("local.properties file not found.Please create it and add it your API Keys")
+        }
+
+        buildConfigField("String","API_KEY",properties.getProperty("apiKey"))
+        buildConfigField("String","BASE_URL",properties.getProperty("baseUrl"))
+
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildTypes {
@@ -58,9 +78,10 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
 
-    //hilt
-    implementation (libs.hilt.android)
-    annotationProcessor (libs.hilt.compiler)
+    //Hilt
+    implementation (libs.hilt.android.v242)
+    kapt (libs.hilt.android.testing)
+    kapt (libs.hilt.compiler.v242)
 
 
     testImplementation(libs.junit)

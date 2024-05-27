@@ -1,4 +1,4 @@
-package com.example.mynewsblog
+package com.example.mynewsblog.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,14 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicplayer.NewsListAdapter
+import com.example.mynewsblog.data.NewsRepository
+import com.example.mynewsblog.data.model.NewsArticleModel
 import com.example.mynewsblog.databinding.FragmentNewsBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
@@ -23,15 +26,12 @@ class NewsFragment : Fragment() {
 
     @Inject
     lateinit var newsRepository: NewsRepository
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View {
 
         binding = FragmentNewsBinding.inflate(inflater, container, false)
 
-        adapter = NewsListAdapter(newsList, requireContext())
+        adapter = NewsListAdapter(newsList)
 
         fetchNewsArticles()
 
@@ -42,22 +42,15 @@ class NewsFragment : Fragment() {
     }
 
     private fun fetchNewsArticles() {
-        val apiKey = "YOUR_API_KEY"
-        val query = "technology"
-        val from = "2022-01-01"
-        val to = "2022-01-31"
-        val sortBy = "publishedAt"
 
         lifecycleScope.launch {
             try {
-                val response = newsRepository.fetchNews(apiKey, query, from, to, sortBy)
-                binding.rvNews.adapter = NewsListAdapter(newsList, requireContext())
+                val response = newsRepository.fetchNews()
+                newsList.clear()
+                newsList.addAll(response.articles)
+                adapter?.notifyDataSetChanged()
             } catch (e: Exception) {
-                Toast.makeText(
-                    requireContext(),
-                    "Failed to fetch news: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Failed to fetch news: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
 

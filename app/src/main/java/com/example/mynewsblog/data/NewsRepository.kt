@@ -1,5 +1,6 @@
-package com.example.mynewsblog
+package com.example.mynewsblog.data
 
+import com.example.mynewsblog.data.api.ApiService
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(private val apiService: ApiService) {
