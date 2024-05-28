@@ -1,16 +1,15 @@
 package com.example.mynewsblog.data.api
 
+import com.example.mynewsblog.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClient {
 
-    private val LOGIN_URL = "https://reqres.in/"
-    private  val NEWS_URL = "https://newsapi.org/"
 
     val loginApiService: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(LOGIN_URL)
+            .baseUrl(BuildConfig.LOGIN_AUTH_URK)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
@@ -18,7 +17,7 @@ class RetrofitClient {
 
     val newsApiService: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(NEWS_URL)
+            .baseUrl(BuildConfig.NEWS_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
