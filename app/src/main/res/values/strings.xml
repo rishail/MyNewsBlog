@@ -2,4 +2,12 @@
     <string name="app_name">MyNewsBlog</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="news_reader">News Reader</string>
+    <string name="text_view_login_screen">Your news,your way</string>
+    <string name="sign_in_btn">Sign in</string>
+    <string name="guest_text_view">Browse as guest</string>
+    <string name="privacy_policy_login">By continuing,you agree to the terms Of Use and \n Privacy Policy</string>
+    <string name="sign_in">Sign In</string>
+    <string name="et_email">Enter your email</string>
+    <string name="et_pwd">Enter your password</string>
 </resources>
