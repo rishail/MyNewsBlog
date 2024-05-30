@@ -1,11 +1,10 @@
-package com.example.musicplayer
+package com.example.mynewsblog.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mynewsblog.NewsArticleModel
+import com.example.mynewsblog.model.NewsArticleModel
 import com.example.mynewsblog.databinding.NewsListAdapterBinding
 
 
@@ -31,10 +30,6 @@ class NewsListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder,@SuppressLint("RecyclerView") position: Int) {
         holder as ViewHolder
-
-
-
-
 
 
 

@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -14,6 +17,23 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
+        val properties= Properties()
+        val localProperties= rootProject.file("local.properties")
+
+        if (localProperties.exists()){
+            FileInputStream(localProperties).use { fis->properties.load(fis)
+            }
+        }
+
+        else{
+            throw GradleException("local.properties file not found.Please create it and add it your API Keys")
+        }
+
+        buildConfigField("String","API_KEY",properties.getProperty("apiKey"))
+        buildConfigField("String","NEWS_URL",properties.getProperty("newsUrl"))
+        buildConfigField("String","LOGIN_AUTH_URK",properties.getProperty("loginUrl"))
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,6 +49,7 @@ android {
 
     buildFeatures{
         viewBinding=true
+        buildConfig=true
     }
 
     compileOptions {
@@ -56,6 +77,8 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
 
+    // Koin for Android
+    implementation (libs.koin.android)
 
 
     testImplementation(libs.junit)

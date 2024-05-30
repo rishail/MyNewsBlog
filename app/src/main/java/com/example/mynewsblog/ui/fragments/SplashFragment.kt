@@ -1,4 +1,4 @@
-package com.example.mynewsblog
+package com.example.mynewsblog.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
