@@ -1,16 +1,19 @@
-package com.example.musicplayer
+package com.example.mynewsblog.ui.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.mynewsblog.R
 import com.example.mynewsblog.data.model.NewsArticleModel
 import com.example.mynewsblog.databinding.NewsListAdapterBinding
 
 
 class NewsListAdapter(
     private var newsList: ArrayList<NewsArticleModel>,
-//    private val callback: SongsListFragment,
+    private var context: Context
 
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -33,16 +36,13 @@ class NewsListAdapter(
         holder as ViewHolder
 
         holder.binding.newsTitle.text=newsList[position].title
-        holder.binding.newsDescription.text=newsList[position].description
+
+        Glide.with(context)
+            .load(newsList[position].urlToImage).placeholder(R.drawable.image_view_background)
+            .error(R.drawable.image_view_background)
+            .into(holder.binding.newsImg)
 
     }
-
-    fun updateNewsList(newNewsList: ArrayList<NewsArticleModel>) {
-        newsList = newNewsList
-        notifyDataSetChanged()
-
-    }
-
 
 
 

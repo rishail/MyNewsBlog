@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.1"
+glide = "4.15.1"
 hiltAndroidVersion = "2.51.1"
 hiltCompilerVersion = "2.51.1"
 kotlin = "2.0.0"
@@ -18,6 +19,7 @@ retrofit = "2.9.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltCompilerVersion" }
 hilt-android-v242 = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroidVersion" }
 hilt-compiler-v242 = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompilerVersion" }

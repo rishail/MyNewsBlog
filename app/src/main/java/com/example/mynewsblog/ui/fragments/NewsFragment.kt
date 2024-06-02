@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.musicplayer.NewsListAdapter
+import com.example.mynewsblog.ui.adapters.NewsListAdapter
 import com.example.mynewsblog.data.NewsRepository
 import com.example.mynewsblog.data.model.NewsArticleModel
 import com.example.mynewsblog.databinding.FragmentNewsBinding
@@ -31,7 +31,7 @@ class NewsFragment : Fragment() {
 
         binding = FragmentNewsBinding.inflate(inflater, container, false)
 
-        adapter = NewsListAdapter(newsList)
+        adapter = NewsListAdapter(newsList,requireContext())
 
         fetchNewsArticles()
 
