@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
 
-    // Retrofit instance for login
     single(named("LoginRetrofit")) {
         Retrofit.Builder()
             .baseUrl(BuildConfig.LOGIN_AUTH_URK)
@@ -18,7 +17,6 @@ val appModule = module {
             .build()
     }
 
-    // Retrofit instance for news
     single(named("NewsRetrofit")) {
         Retrofit.Builder()
             .baseUrl(BuildConfig.NEWS_URL)
@@ -26,12 +24,10 @@ val appModule = module {
             .build()
     }
 
-    // LoginApiService
     single(named("LoginApiService")) {
         get<Retrofit>(named("LoginRetrofit")).create(ApiService::class.java)
     }
 
-    // NewsApiService
     single(named("NewsApiService")) {
         get<Retrofit>(named("NewsRetrofit")).create(ApiService::class.java)
     }
