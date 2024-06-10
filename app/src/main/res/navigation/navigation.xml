@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/dashboardFragment">
+    app:startDestination="@id/newsFragment">
 
     <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.mynewsblog.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/newsFragment"
+        android:name="com.example.mynewsblog.ui.fragments.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
 </navigation>

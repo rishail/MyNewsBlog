@@ -1,6 +1,12 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -14,7 +20,26 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
+     val properties= Properties()
+     val localProperties= rootProject.file("local.properties")
+
+        if (localProperties.exists()){
+            FileInputStream(localProperties).use { fis->properties.load(fis)
+            }
+        }
+
+        else{
+            throw GradleException("local.properties file not found.Please create it and add it your API Keys")
+        }
+
+        buildConfigField("String","API_KEY",properties.getProperty("apiKey"))
+        buildConfigField("String","NEWS_URL",properties.getProperty("newsUrl"))
+        buildConfigField("String","LOGIN_AUTH_URK",properties.getProperty("loginUrl"))
+
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -29,6 +54,7 @@ android {
 
     buildFeatures{
         viewBinding=true
+        buildConfig=true
     }
 
     compileOptions {
@@ -47,9 +73,30 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+     // nav graph
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+
+    //Hilt
+    implementation (libs.hilt.android.v242)
+    kapt (libs.hilt.android.testing)
+    kapt (libs.hilt.compiler.v242)
+
+
+    //glide
+    implementation (libs.glide)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+
+kapt {
+    correctErrorTypes = true
+}
+
