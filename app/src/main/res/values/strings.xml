@@ -12,4 +12,5 @@
     <string name="et_pwd">Enter your password</string>
     <string name="latest_news">Latest news</string>
     <string name="image_for_news">Image for news</string>
+    <string name="latest_news_text">Latest News</string>
 </resources>

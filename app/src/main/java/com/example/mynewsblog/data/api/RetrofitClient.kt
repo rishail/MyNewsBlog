@@ -6,7 +6,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClient {
 
-
     val loginApiService: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BuildConfig.LOGIN_AUTH_URK)

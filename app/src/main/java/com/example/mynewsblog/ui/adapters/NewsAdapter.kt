@@ -15,8 +15,7 @@ class NewsListAdapter(
     private var newsList: ArrayList<NewsArticleModel>,
     private var context: Context
 
-    ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolder(val binding: NewsListAdapterBinding) :RecyclerView.ViewHolder(binding.root)
 
@@ -43,8 +42,6 @@ class NewsListAdapter(
             .into(holder.binding.newsImg)
 
     }
-
-
 
 }
 

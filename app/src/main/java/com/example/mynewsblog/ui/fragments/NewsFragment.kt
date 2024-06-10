@@ -12,6 +12,7 @@ import com.example.mynewsblog.ui.adapters.NewsListAdapter
 import com.example.mynewsblog.data.NewsRepository
 import com.example.mynewsblog.data.model.NewsArticleModel
 import com.example.mynewsblog.databinding.FragmentNewsBinding
+import com.example.mynewsblog.ui.RecyclerViewSpacingItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,6 +38,9 @@ class NewsFragment : Fragment() {
 
         binding.rvNews.adapter = adapter
         binding.rvNews.layoutManager = LinearLayoutManager(context)
+
+        val spacingItems = RecyclerViewSpacingItems(95)
+        binding.rvNews.addItemDecoration(spacingItems)
 
         return binding.root
     }

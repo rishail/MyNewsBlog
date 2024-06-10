@@ -9,8 +9,8 @@ class NewsRepository @Inject constructor(private val apiService: ApiService) {
 
     suspend fun fetchNews(
         query: String = "apple",
-        from: String = "2024-05-20",
-        to: String = "2024-05-27",
+        from: String = "2024-06-01",
+        to: String = "2024-06-07",
         sortBy: String = "popularity",
         apiKey: String =BuildConfig.API_KEY
     ): NewsResponseModel {
